@@ -80,10 +80,10 @@ func TrainingInfo(data string, weight, height float64) (string, error) {
 
 	if activityType == "Ходьба" {
 		calories, _ = WalkingSpentCalories(steps, weight, height, duration)
-	}
-
-	if activityType == "Бег" {
+	} else if activityType == "Бег" {
 		calories, _ = RunningSpentCalories(steps, weight, height, duration)
+	} else {
+		return "", fmt.Errorf("неизвестный тип тренировки")
 	}
 
 	// Форматируем длительность в часах с двумя знаками после запятой
