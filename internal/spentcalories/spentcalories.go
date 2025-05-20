@@ -78,11 +78,12 @@ func TrainingInfo(data string, weight, height float64) (string, error) {
 	speed := meanSpeed(steps, height, duration)
 	var calories float64
 
-	if activityType == "Ходьба" {
+	switch activityType {
+	case "Ходьба":
 		calories, _ = WalkingSpentCalories(steps, weight, height, duration)
-	} else if activityType == "Бег" {
+	case "Бег":
 		calories, _ = RunningSpentCalories(steps, weight, height, duration)
-	} else {
+	default:
 		return "", fmt.Errorf("неизвестный тип тренировки")
 	}
 
